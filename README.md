@@ -9,6 +9,7 @@ A collection of agent skills for AI assistants, providing CLI tools for various 
 | [anylist](./anylist/) | Manage grocery and shopping lists | [`anylist-cli`](https://www.npmjs.com/package/anylist-cli) |
 | [hevy](./hevy/) | Query workout data from Hevy | [`hevy-cli`](https://www.npmjs.com/package/hevy-cli) |
 | [paprika](./paprika/) | Access Paprika Recipe Manager | [`paprika-recipe-cli`](https://www.npmjs.com/package/paprika-recipe-cli) |
+| [resend](./resend/) | Manage received emails and attachments | [`@mjrussell/resend-cli`](https://www.npmjs.com/package/@mjrussell/resend-cli) |
 | [todoist](./todoist/) | Manage tasks with Todoist | [`todoist-ts-cli`](https://www.npmjs.com/package/todoist-ts-cli) |
 | [trimet](./trimet/) | Portland transit data | [`trimet-cli`](https://www.npmjs.com/package/trimet-cli) |
 | [trakt](./trakt/) | Movie/TV watch history | [`trakt-cli`](https://www.npmjs.com/package/trakt-cli) |
