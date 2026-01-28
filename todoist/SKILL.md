@@ -17,7 +17,8 @@ CLI for Todoist task management, built on the official TypeScript SDK.
 ## Installation
 
 ```bash
-npm install -g todoist-ts-cli
+# Requires todoist-ts-cli >= 0.2.0 (for --top / --order)
+npm install -g todoist-ts-cli@^0.2.0
 ```
 
 ## Setup
