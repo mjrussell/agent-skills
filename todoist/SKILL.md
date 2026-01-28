@@ -49,7 +49,7 @@ todoist tasks --json
 ```bash
 todoist add "Buy groceries"
 todoist add "Meeting" --due "tomorrow 10am"
-todoist add "Review PR" --due "today" --priority 1 --project "Work"
+todoist add "Review PR" --due "today" --priority 1 --project "Work" --top  # add to top of project
 todoist add "Call mom" -d "sunday" -l "family"  # with label
 ```
 
