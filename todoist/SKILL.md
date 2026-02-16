@@ -1,6 +1,6 @@
 ---
 name: todoist
-description: Manage tasks and projects in Todoist. Use when user asks about tasks, to-dos, reminders, or productivity.
+description: Manage tasks, projects, sections, labels, and collaborators in Todoist. Use when user asks about tasks, to-dos, reminders, deadlines, assignment, or productivity workflows.
 homepage: https://todoist.com
 metadata:
   clawdbot:
@@ -17,8 +17,8 @@ CLI for Todoist task management, built on the official TypeScript SDK.
 ## Installation
 
 ```bash
-# Requires todoist-ts-cli >= 0.2.0 (for --top / --order)
-npm install -g todoist-ts-cli@^0.2.0
+# Requires todoist-ts-cli >= 0.3.0 (deadlines, assignees, sections/collaborators)
+npm install -g todoist-ts-cli@^0.3.0
 ```
 
 ## Setup
@@ -50,10 +50,11 @@ todoist tasks --json
 ```bash
 todoist add "Buy groceries"
 todoist add "Meeting" --due "tomorrow 10am"
-todoist add "Review PR" --due "today" --priority 1 --project "Work"
+todoist add "Review PR" --due "today" --deadline "2026-03-05" --priority 1 --project "Work"
 todoist add "Prep slides" --project "Work" --order 3  # add at a specific position (1-based)
 todoist add "Triage inbox" --project "Work" --order top  # add to top (alternative to --top)
 todoist add "Call mom" -d "sunday" -l "family"  # with label
+todoist add "Review PR" -p "Work" -a "123456789"  # assign to collaborator user ID
 ```
 
 ### Manage Tasks
@@ -63,7 +64,15 @@ todoist view <id>          # View task details
 todoist done <id>          # Complete task
 todoist reopen <id>        # Reopen completed task
 todoist update <id> --due "next week"
-todoist move <id> -p "Personal"
+todoist update <id> --deadline "2026-03-05"
+todoist update <id> --deadline none  # clear deadline
+todoist update <id> --labels "next,waiting"  # replace labels
+todoist update <id> --add-label next --remove-label waiting
+todoist update <id> -a "123456789"  # assign
+todoist update <id> -a "null"       # unassign
+todoist move <id> -p "Personal"                 # move to project
+todoist move <id> -p "Work" -s "Section A"      # move to section
+todoist move <id> --parent <task-id>            # make sub-task
 todoist delete <id>
 ```
 
@@ -73,13 +82,24 @@ todoist delete <id>
 todoist search "meeting"
 ```
 
-### Projects & Labels
+### Projects, Sections, Labels
 
 ```bash
 todoist projects           # List projects
 todoist project-add "New Project"
+todoist project-add "Roadmap" --color blue
+todoist sections
+todoist sections -p "Work"
+todoist section-add "Q1" -p "Work"
 todoist labels             # List labels
 todoist label-add "urgent"
+todoist label-add "focus" --color red
+```
+
+### Collaborators
+
+```bash
+todoist collaborators <project-id>  # list collaborator IDs for assignment
 ```
 
 ### Comments
@@ -122,6 +142,22 @@ todoist tasks -p "Work"
 todoist tasks -f "p1"
 ```
 
+**User: "Assign this task to Alex"**
+```bash
+todoist collaborators <project-id>   # find Alex's collaborator ID
+todoist update <id> -a "<collaborator-id>"
+```
+
+**User: "Add a hard deadline for this task"**
+```bash
+todoist update <id> --deadline "2026-03-05"
+```
+
+**User: "Move this into the Q1 section"**
+```bash
+todoist move <id> -p "Work" -s "Q1"
+```
+
 ## Filter Syntax
 
 Todoist supports powerful filter queries:
@@ -135,5 +171,8 @@ Todoist supports powerful filter queries:
 
 - Task IDs are shown in task listings
 - Due dates support natural language ("tomorrow", "next monday", "jan 15")
+- Deadlines use explicit dates (`YYYY-MM-DD`) and can be cleared with `--deadline none`
 - Priority 1 is highest, 4 is lowest
 - Use `--order <n>` (1-based) or `--order top` to insert a task at a specific position within a project/section
+- Assignment needs a collaborator user ID from `todoist collaborators <project-id>`
+- Use `--json` for script-friendly output on supported commands
