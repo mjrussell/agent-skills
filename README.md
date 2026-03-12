@@ -4,12 +4,12 @@ A collection of agent skills for AI assistants, providing CLI tools for various 
 
 ## Available Skills
 
-| Skill | Description | npm Package |
-|-------|-------------|-------------|
+| Skill | Description | CLI / Source |
+|-------|-------------|--------------|
 | [anylist](./anylist/) | Manage grocery and shopping lists | [`anylist-cli`](https://www.npmjs.com/package/anylist-cli) |
 | [hevy](./hevy/) | Query workout data from Hevy | [`hevy-cli`](https://www.npmjs.com/package/hevy-cli) |
 | [paprika](./paprika/) | Access Paprika Recipe Manager | [`paprika-recipe-cli`](https://www.npmjs.com/package/paprika-recipe-cli) |
-| [resend](./resend/) | Manage received emails and attachments | [`@mjrussell/resend-cli`](https://www.npmjs.com/package/@mjrussell/resend-cli) |
+| [resend](./resend/) | Manage Resend email sending, receiving, domains, contacts, broadcasts, and webhooks | [`resend-cli`](https://github.com/resend/resend-cli) |
 | [todoist](./todoist/) | Manage tasks with Todoist | [`todoist-ts-cli`](https://www.npmjs.com/package/todoist-ts-cli) |
 | [trimet](./trimet/) | Portland transit data | [`trimet-cli`](https://www.npmjs.com/package/trimet-cli) |
 | [trakt](./trakt/) | Movie/TV watch history | [`trakt-cli`](https://www.npmjs.com/package/trakt-cli) |
@@ -30,12 +30,14 @@ npx clawdhub install hevy
 npm install -g anylist-cli hevy-cli paprika-recipe-cli todoist-ts-cli trimet-cli
 ```
 
+Resend now uses the official CLI. Install it via Homebrew or the official installer instead of the older community npm package; see [`resend/SKILL.md`](./resend/SKILL.md).
+
 ## About
 
 These skills are designed to be used by AI assistants (like Claude) to interact with various services on behalf of users. Each skill includes:
 
 - A `SKILL.md` file describing when and how to use the tool
-- Reference to the underlying CLI tool (installed via npm)
+- Reference to the underlying CLI tool and its install source
 - Usage examples for common scenarios
 
 ## Disclaimer
